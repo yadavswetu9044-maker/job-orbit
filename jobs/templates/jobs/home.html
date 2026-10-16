@@ -1,0 +1,45 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 pt-12 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+        <div class="inline-flex items-center gap-2 bg-white shadow-sm border px-3 py-1 rounded-full text-xs font-bold text-indigo-600">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Live Jobs Available
+        </div>
+        <h1 class="text-[48px] font-bold leading-[1.05] mt-4 text-slate-900">Get Your<br><span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Dream Job</span><br>Fast & Easy</h1>
+        <p class="text-slate-500 mt-4">Top companies are waiting for you.</p>
+        <a href="/find-jobs/" class="mt-6 inline-block bg-slate-900 text-white px-6 py-3 rounded-full font-bold text-sm">Explore All Jobs →</a>
+    </div>
+    <div class="relative">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800" class="rounded-[32px] shadow-2xl h-[360px] w-full object-cover border-4 border-white">
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="font-bold text-xl">Latest Jobs</h2>
+        <a href="/find-jobs/" class="text-sm font-bold text-indigo-600 bg-white px-4 py-2 rounded-full border shadow-sm">View All Jobs →</a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+        {% for job in jobs %}
+        <a href="{% url 'job_detail' job.id %}" class="bg-white/80 backdrop-blur border border-white p-6 rounded-[22px] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all block">
+            <div class="flex justify-between">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 border flex items-center justify-center font-bold text-indigo-600">{{ job.company|first }}</div>
+                <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-slate-900 text-white h-fit">{{ job.job_type }}</span>
+            </div>
+            <h3 class="mt-4 font-bold text-[17px]">{{ job.title }}</h3>
+            <p class="text-sm text-slate-500 mt-1">{{ job.company }} • {{ job.location }}</p>
+            <div class="mt-4 flex justify-between items-center">
+                <span class="font-bold text-indigo-600">{{ job.salary }}</span>
+                <span class="bg-indigo-600 text-white text-xs px-4 py-1.5 rounded-full">View →</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="mt-10 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-[24px] p-8 text-center text-white">
+        <h3 class="text-2xl font-bold">There are more jobs!</h3>
+        <p class="text-indigo-100 mt-2 text-sm">We show only few latest jobs on Home. Go to Find Jobs to see all.</p>
+        <a href="/find-jobs/" class="mt-4 inline-block bg-white text-indigo-600 px-8 py-3 rounded-full font-bold">Go to Find Jobs Page</a>
+    </div>
+</div>
+{% endblock %}

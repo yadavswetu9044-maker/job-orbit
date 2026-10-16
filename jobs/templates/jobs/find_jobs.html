@@ -1,0 +1,45 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="bg-white rounded-[24px] p-6 shadow-lg border">
+        <h2 class="text-2xl font-bold">Find Your Perfect Job</h2>
+        <form method="GET" class="mt-5 grid md:grid-cols-4 gap-3">
+            <input name="q" value="{{ query }}" placeholder="Search Python, React, Designer..." class="border p-3 rounded-xl text-sm w-full">
+            <select name="type" class="border p-3 rounded-xl text-sm">
+                <option value="">All Types</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Internship">Internship</option>
+                <option value="Remote">Remote</option>
+            </select>
+            <input name="location" value="{{ request.GET.location }}" placeholder="Location" class="border p-3 rounded-xl text-sm">
+            <button type="submit" class="bg-slate-900 text-white rounded-xl font-bold text-sm">Search Jobs</button>
+        </form>
+    </div>
+
+    <h3 class="mt-8 font-bold text-lg">{{ jobs|length }} Jobs Found {% if query %} for "{{ query }}"{% endif %}</h3>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-4">
+        {% for job in jobs %}
+        <div class="bg-white border p-6 rounded-[22px] shadow-sm hover:shadow-lg transition-all">
+            <div class="flex justify-between">
+                <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center font-bold text-indigo-600">{{ job.company|first }}</div>
+                <span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full h-fit">{{ job.job_type }}</span>
+            </div>
+            <h3 class="font-bold mt-4">{{ job.title }}</h3>
+            <p class="text-xs text-slate-500 mt-1">{{ job.company }} • {{ job.location }}</p>
+            <p class="text-xs text-slate-600 mt-2 line-clamp-2">{{ job.description|truncatewords:15 }}</p>
+            <div class="mt-4 flex gap-2">
+                <a href="{% url 'job_detail' job.id %}" class="flex-1 text-center border py-2 rounded-full text-xs font-bold">View Details</a>
+                <a href="{% url 'apply_job' job.id %}" class="flex-1 text-center bg-indigo-600 text-white py-2 rounded-full text-xs font-bold">Apply Now</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-3 text-center py-16 bg-white rounded-2xl border border-dashed">
+            <p>No jobs found. Try different search.</p>
+            <a href="/find-jobs/" class="text-indigo-600 font-bold underline">Clear Search</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

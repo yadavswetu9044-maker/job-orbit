@@ -1,0 +1,59 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-6 py-10">
+
+    <!-- Job Info Card -->
+    <div class="bg-white border rounded-[24px] p-6 mb-6 shadow-sm">
+        <div class="flex gap-4 items-center">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl">
+                {{ job.company_name|first|upper }}
+            </div>
+            <div>
+                <h2 class="font-bold text-lg">{{ job.title }}</h2>
+                <p class="text-sm text-slate-500">🏢 {{ job.company_name }} • 📍 {{ job.location }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply Form -->
+    <div class="bg-white border rounded-[24px] p-8 shadow-sm">
+        <h1 class="text-2xl font-extrabold text-center">🚀 Apply for this Job</h1>
+        <p class="text-center text-slate-500 text-sm mt-2">Fill karo aur dream job pao</p>
+
+        <form method="POST" class="mt-8 space-y-4">
+            {% csrf_token %}
+
+            <div>
+                <label class="text-sm font-bold">👤 Full Name</label>
+                <input type="text" name="name" required placeholder="Ex: Rahul Sharma" class="w-full mt-1 border rounded-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
+             
+            <div>
+                <label class="text-sm font-bold">📧 Email Address</label>
+                <input type="email" name="email" required placeholder="rahul@gmail.com" class="w-full mt-1 border rounded-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
+
+            <div>
+                <label class="text-sm font-bold">📱 Phone Number</label>
+                <input type="tel" name="phone" required placeholder="+91 98XXXX XXXXX" class="w-full mt-1 border rounded-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
+
+            <div>
+                <label class="text-sm font-bold">📝 Why should we hire you? (Cover Letter)</label>
+                <textarea name="cover_letter" rows="4" placeholder="I am passionate about..." class="w-full mt-1 border rounded-2xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"></textarea>
+            </div>
+
+            <div>
+                <label class="text-sm font-bold">🔗 Resume Link (Google Drive)</label>
+                <input type ="text" name="resume">
+            </div>
+
+            <button type="submit" class="w-full bg-slate-900 text-white py-3.5 rounded-full font-bold mt-4 hover:bg-indigo-600 transition">
+                ✅ Submit Application
+            </button>
+
+            <p class="text-[11px] text-center text-slate-400 mt-3">By applying, you agree to our Terms & Conditions 🔒</p>
+        </form>
+    </div>
+</div>
+{% endblock %}

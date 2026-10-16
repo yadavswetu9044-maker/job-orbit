@@ -1,0 +1,36 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-10">
+    <div class="text-center mb-10">
+        <div class="inline-flex bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-bold">TOP HIRING COMPANIES</div>
+        <h1 class="text-4xl font-extrabold mt-4">Top Companies in <span class="text-indigo-600">Lucknow</span></h1>
+        <p class="text-slate-500 mt-2">1000+ candidates already hired</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        {% for c in companies %}
+        <a href="/find-jobs/?q={{ c.company }}" class="bg-white rounded-[24px] border p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group">
+            <div class="flex items-start justify-between">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white flex items-center justify-center font-bold text-xl">{{ c.company|first|upper }}</div>
+                <span class="bg-green-50 text-green-600 text-[11px] font-bold px-3 py-1 rounded-full">{{ c.total }} Open Jobs</span>
+            </div>
+            <h3 class="font-bold text-lg mt-4 group-hover:text-indigo-600">{{ c.company }}</h3>
+            <p class="text-xs text-slate-500 mt-1">Hiring for Tech, Marketing, Support</p>
+            <div class="mt-4 flex items-center gap-2 text-xs text-slate-400">
+                <span>Lucknow</span> <span>•</span> <span>4.8 Rated</span>
+            </div>
+            <div class="mt-5 bg-slate-900 text-white text-center py-2.5 rounded-full text-sm font-bold group-hover:bg-indigo-600">View Jobs →</div>
+        </a>
+        {% empty %}
+        <p class="text-center col-span-3">No companies yet. Add jobs first.</p>
+        {% endfor %}
+    </div>
+
+    <div class="mt-12 bg-slate-900 rounded-[24px] p-8 text-center text-white">
+        <p class="text-sm text-slate-400 tracking-widest font-bold">TRUSTED BY 50+ COMPANIES</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-8 text-xl font-bold opacity-80">
+            <span>TCS</span><span>Wipro</span><span>Infosys</span><span>HCL</span><span>Google</span><span>Paytm</span><span>Flipkart</span><span>Zoho</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

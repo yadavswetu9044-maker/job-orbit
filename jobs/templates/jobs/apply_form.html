@@ -1,0 +1,25 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-6 py-10">
+    <a href="{% url 'job_detail' job.id %}" class="text-sm text-slate-500"><i class="fa-solid fa-arrow-left mr-2"></i>Back to {{ job.title }}</a>
+    <div class="bg-white rounded-[24px] p-8 mt-5 shadow-xl border">
+        <h2 class="text-2xl font-bold">Apply for {{ job.title }}</h2>
+        <p class="text-sm text-slate-500 mt-1">{{ job.company }} • {{ job.location }}</p>
+        <form method="POST" class="mt-6 space-y-4">
+            {% csrf_token %}
+            <div class="grid md:grid-cols-2 gap-4">
+                <input name="full_name" required placeholder="Full Name" class="w-full border p-3 rounded-xl text-sm">
+                <input name="phone" required placeholder="Phone Number" class="w-full border p-3 rounded-xl text-sm">
+            </div>
+            <input name="email" required type="email" placeholder="Email Address" class="w-full border p-3 rounded-xl text-sm">
+            <div class="grid md:grid-cols-2 gap-4">
+                <select name="experience" required class="w-full border p-3 rounded-xl text-sm"><option value="">Experience</option><option>Fresher</option><option>0-1 Years</option><option>1-3 Years</option><option>3+ Years</option></select>
+                <input name="skills" required placeholder="Your Skills (Python, React...)" class="w-full border p-3 rounded-xl text-sm">
+            </div>
+            <input name="resume_link" placeholder="Resume Link (Google Drive)" class="w-full border p-3 rounded-xl text-sm">
+            <textarea name="cover_letter" rows="4" placeholder="Cover Letter / Why should we hire you?" class="w-full border p-3 rounded-xl text-sm"></textarea>
+            <button type="submit" class="w-full bg-slate-900 text-white py-3.5 rounded-full font-bold">Submit Application <i class="fa-solid fa-check ml-2"></i></button>
+        </form>
+    </div>
+</div>
+{% endblock %}

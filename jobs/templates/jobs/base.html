@@ -1,0 +1,95 @@
+{% load static %}
+<link rel="stylesheet" href="{% static ' css/stylr.css' %}">
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JobOrbit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-[#f8f9ff] font-sans">
+<nav class="bg-white/80 backdrop-blur border-b sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2 font-bold text-xl"><div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center"><i class="fa-solid fa-rocket text-sm"></i></div> JobOrbit</a>
+        
+        <div class="flex gap-6 text-sm font-semibold text-slate-500">
+            <a href="/" class="{% if request.path == '/' %}text-indigo-600 border-b-2 border-indigo-600 pb-1{% else %}hover:text-slate-900{% endif %}">
+                <i class="fa-solid fa-house mr-1"></i> Home
+            </a>
+            <a href="/find-jobs/" class="{% if '/find-jobs/' in request.path or '/job/' in request.path %}text-indigo-600 border-b-2 border-indigo-600 pb-1{% else %}hover:text-slate-900{% endif %}">
+                Find Jobs
+            </a>
+            <a href="/companies/" class="{% if '/companies/' in request.path %}text-indigo-600 border-b-2 border-indigo-600 pb-1{% else %}hover:text-slate-900{% endif %}">
+                Companies
+            </a>
+            <a href="/about/" class="{% if '/about/' in request.path %}text-indigo-600 border-b-2 border-indigo-600 pb-1{% else %}hover:text-slate-900{% endif %}">
+                About
+            </a>
+        </div>
+
+        <div class="flex gap-3 items-center">
+            <a href="/login/" class="text-sm font-semibold">Login</a>
+            <a href="/admin/" class="bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold">+ Post a Job</a>
+        </div>
+    </div>
+</nav>
+
+<div class="min-h-screen">
+{% block content %}{% endblock %}
+
+<!-- FOOTER START -->
+<footer class="bg-slate-900 text-white mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+        <!-- 1 -->
+        <div>
+            <div class="flex items-center gap-2 font-bold text-xl mb-3">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">🚀</div> JobOrbit
+            </div>
+            <p class="text-sm text-slate-400">Lucknow's No.1 Job Portal. Find your dream job fast & easy. Trusted by 1000+ students.</p>
+        </div>
+
+        <!-- 2 -->
+        <div>
+            <h3 class="font-bold mb-4">🔗 Quick Links</h3>
+            <ul class="text-sm text-slate-400 space-y-2">
+                <li><a href="/" class="hover:text-white">🏠 Home</a></li>
+                <li><a href="/find-jobs/" class="hover:text-white">💼 Find Jobs</a></li>
+                <li><a href="/companies/" class="hover:text-white">🏢 Companies</a></li>
+                <li><a href="/about/" class="hover:text-white">ℹ️ About</a></li>
+            </ul>
+        </div>
+
+        <!-- 3 - YAHAN APNA DETAIL DALO -->
+        <div>
+            <h3 class="font-bold mb-4">📞 Contact Me</h3>
+            <ul class="text-sm text-slate-400 space-y-2">
+                <li>👨‍💻 Name: <span class="text-white font-semibold">SWETA YADAV</span></li>
+                <li>📧 Email: <span class="text-white">your.email@gmail.com</span></li>
+                <li>📱 Phone: <span class="text-white">+91 9XXXXXXXXX</span></li>
+                <li>📍 Location: Lucknow, UP, India</li>
+            </ul>
+        </div>
+
+        <!-- 4 -->
+        <div>
+            <h3 class="font-bold mb-4">🌐 Connect With Me</h3>
+            <div class="flex flex-col gap-3 text-sm">
+                <a href="https://linkedin.com/in/YOUR-LINK" target="_blank" class="bg-[#0A66C2] px-4 py-2 rounded-full text-center font-bold hover:opacity-90">🔵 LinkedIn Profile</a>
+                <a href="https://github.com/YOUR-GITHUB" target="_blank" class="bg-white text-black px-4 py-2 rounded-full text-center font-bold hover:bg-slate-200">🐙 GitHub Profile</a>
+                <a href="mailto:your.email@gmail.com" class="bg-indigo-600 px-4 py-2 rounded-full text-center font-bold hover:bg-indigo-700">✉️ Send Email</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-slate-800 text-center py-4 text-xs text-slate-500">
+        © 2026 JobOrbit | Made with ❤️ by <span class="text-white font-bold">SWETA</span> | All Rights Reserved 🚀
+    </div>
+</footer>
+<!-- FOOTER END -->
+
+</div>
+
+</body>
+</html>
